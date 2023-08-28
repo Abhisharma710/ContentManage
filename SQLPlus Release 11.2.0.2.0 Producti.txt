@@ -1,0 +1,485 @@
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Jul 17 07:38:18 2023
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(5)
+ NAME                                               VARCHAR2(30)
+ EMAIL                                              VARCHAR2(30)
+ PHONE                                              VARCHAR2(30)
+ SALARY                                             NUMBER(7)
+ GRADE                                              VARCHAR2(1)
+
+SQL> create table empbasic
+  2  (empid number(5),basicsalary number(7),foreign key(empid) references employee(empid));
+
+Table created.
+
+SQL> select * from employee;
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1004 arnav                          arnav03@gmail.com
+6567899368                          70000 B
+
+      1018 aniket                         aniket28gmail.com
+23456776532                         72000 B
+
+      1017 jannat                         jannat92gmail.com
+234568932                           31000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1016 prachi                         prachi17gmail.com
+298765432                           42000 B
+
+      1015 ayushi                         aysushi21gmail.com
+213456777778                        24000 B
+
+      1020 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1019 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+      1014 disha                          disha24gmail.com
+7987654354                          72000 A
+
+      1013 deeksha                        deeksha03gmail.com
+7234568798                          69000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1012 madhuri                        madhuri23gmail.com
+7623567698                          36000 B
+
+      1011 akash                          akash15gmail.com
+765445698                           63000 A
+
+      1010 rishi                          rishi20gmail.com
+76543222178                         45000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1009 tamanna                        tamanna17gmail.com
+345139878                           29000 B
+
+      1008 sanjana                        sanjana12gmail.com
+798139878                           81000 A
+
+      1007 rishabh                        rishabh@gmail.com
+7123449878                          85000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1006 anurag                         anurag13@gmail.com
+73456789878                         60000 A
+
+      1005 kartik                         kartik27@gmail.com
+765342368                           60000 B
+
+      1003 sneha                          sneha29@gmail.com
+6533674568                          70000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1002 gunjan                         gunjan20@gmail.com
+123454568                           80000 A
+
+      1001 diksha                         diksha26@gmail.com
+1234567898                          90000 A
+
+
+20 rows selected.
+
+SQL> insert into empbasic values(1001,89000);
+
+1 row created.
+
+SQL> insert into empbasic values(1002,72000);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from empbasic;
+
+     EMPID BASICSALARY
+---------- -----------
+      1001       89000
+      1002       72000
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select employee.name,employee salary,empbasic.basicsalary from employee join empbasic on employee.empid=empbasic=empid;
+select employee.name,employee salary,empbasic.basicsalary from employee join empbasic on employee.empid=empbasic=empid
+                                                                                                                *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> select employee.name,employee.salary,empbasic.basicsalary from employee join empbasic on employee.empid=empbasic.empid;
+
+NAME                               SALARY BASICSALARY
+------------------------------ ---------- -----------
+diksha                              90000       89000
+gunjan                              80000       72000
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from employee;
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1004 arnav                          arnav03@gmail.com
+6567899368                          70000 B
+
+      1018 aniket                         aniket28gmail.com
+23456776532                         72000 B
+
+      1017 jannat                         jannat92gmail.com
+234568932                           31000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1016 prachi                         prachi17gmail.com
+298765432                           42000 B
+
+      1015 ayushi                         aysushi21gmail.com
+213456777778                        24000 B
+
+      1020 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1019 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+      1014 disha                          disha24gmail.com
+7987654354                          72000 A
+
+      1013 deeksha                        deeksha03gmail.com
+7234568798                          69000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1012 madhuri                        madhuri23gmail.com
+7623567698                          36000 B
+
+      1011 akash                          akash15gmail.com
+765445698                           63000 A
+
+      1010 rishi                          rishi20gmail.com
+76543222178                         45000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1009 tamanna                        tamanna17gmail.com
+345139878                           29000 B
+
+      1008 sanjana                        sanjana12gmail.com
+798139878                           81000 A
+
+      1007 rishabh                        rishabh@gmail.com
+7123449878                          85000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1006 anurag                         anurag13@gmail.com
+73456789878                         60000 A
+
+      1005 kartik                         kartik27@gmail.com
+765342368                           60000 B
+
+      1003 sneha                          sneha29@gmail.com
+6533674568                          70000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1002 gunjan                         gunjan20@gmail.com
+123454568                           80000 A
+
+      1001 diksha                         diksha26@gmail.com
+1234567898                          90000 A
+
+
+20 rows selected.
+
+SQL> update employee set salary=78000,grade='F' where empid=1002;
+
+1 row updated.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from employee;
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1004 arnav                          arnav03@gmail.com
+6567899368                          70000 B
+
+      1018 aniket                         aniket28gmail.com
+23456776532                         72000 B
+
+      1017 jannat                         jannat92gmail.com
+234568932                           31000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1016 prachi                         prachi17gmail.com
+298765432                           42000 B
+
+      1015 ayushi                         aysushi21gmail.com
+213456777778                        24000 B
+
+      1020 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1019 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+      1014 disha                          disha24gmail.com
+7987654354                          72000 A
+
+      1013 deeksha                        deeksha03gmail.com
+7234568798                          69000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1012 madhuri                        madhuri23gmail.com
+7623567698                          36000 B
+
+      1011 akash                          akash15gmail.com
+765445698                           63000 A
+
+      1010 rishi                          rishi20gmail.com
+76543222178                         45000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1009 tamanna                        tamanna17gmail.com
+345139878                           29000 B
+
+      1008 sanjana                        sanjana12gmail.com
+798139878                           81000 A
+
+      1007 rishabh                        rishabh@gmail.com
+7123449878                          85000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1006 anurag                         anurag13@gmail.com
+73456789878                         60000 A
+
+      1005 kartik                         kartik27@gmail.com
+765342368                           60000 B
+
+      1003 sneha                          sneha29@gmail.com
+6533674568                          70000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1002 gunjan                         gunjan20@gmail.com
+123454568                           78000 F
+
+      1001 diksha                         diksha26@gmail.com
+1234567898                          90000 A
+
+
+20 rows selected.
+
+SQL> delete from employee where empid=1018;
+
+1 row deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from empid;
+select * from empid
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from employee;
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1004 arnav                          arnav03@gmail.com
+6567899368                          70000 B
+
+      1017 jannat                         jannat92gmail.com
+234568932                           31000 B
+
+      1016 prachi                         prachi17gmail.com
+298765432                           42000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1015 ayushi                         aysushi21gmail.com
+213456777778                        24000 B
+
+      1020 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+      1019 aditya                         aditya26gmail.com
+654329982                           68000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1014 disha                          disha24gmail.com
+7987654354                          72000 A
+
+      1013 deeksha                        deeksha03gmail.com
+7234568798                          69000 A
+
+      1012 madhuri                        madhuri23gmail.com
+7623567698                          36000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1011 akash                          akash15gmail.com
+765445698                           63000 A
+
+      1010 rishi                          rishi20gmail.com
+76543222178                         45000 A
+
+      1009 tamanna                        tamanna17gmail.com
+345139878                           29000 B
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1008 sanjana                        sanjana12gmail.com
+798139878                           81000 A
+
+      1007 rishabh                        rishabh@gmail.com
+7123449878                          85000 A
+
+      1006 anurag                         anurag13@gmail.com
+73456789878                         60000 A
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1005 kartik                         kartik27@gmail.com
+765342368                           60000 B
+
+      1003 sneha                          sneha29@gmail.com
+6533674568                          70000 B
+
+      1002 gunjan                         gunjan20@gmail.com
+123454568                           78000 F
+
+
+     EMPID NAME                           EMAIL
+---------- ------------------------------ ------------------------------
+PHONE                              SALARY G
+------------------------------ ---------- -
+      1001 diksha                         diksha26@gmail.com
+1234567898                          90000 A
+
+
+19 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> connect
